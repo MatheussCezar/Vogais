@@ -14,26 +14,24 @@ function embaralhar(palavras){
 
 function criarCarta(palavra, index){
     const carta = document.createElement("div");
-    carta.classList.add("carta", "cartaVirada");
+    carta.classList.add("carta");
     carta.dataset.palavra = palavra;
-    adicionarListener(carta);
-    return carta;
-}
+    carta.innerHTML = `
+        <div class="carta-inner">
 
-function adicionarListener(carta){
+            <div class="frente">
+                ${palavra}
+            </div>
+
+            <div class="verso"></div>
+
+        </div>
+    `;
+
     carta.addEventListener("click", () => {
-        if(carta.classList.contains("cartaVirada")){
-            carta.classList.remove("cartaVirada");
-            carta.style.transform = "translateY(360deg)"
-            carta.classList.add("cartaAberta");
-            carta.innerHTML = carta.dataset.palavra;
-        }else{
-           carta.classList.remove("cartaAberta");
-            carta.classList.add("cartaVirada");
-            carta.innerHTML = ""; 
-        }
-        
-    })
+        carta.classList.toggle("virada");
+    });
+    return carta;
 }
 
 function draw(baralho, canvas){
