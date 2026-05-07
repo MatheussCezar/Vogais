@@ -14,19 +14,19 @@ function embaralhar(palavras){
 
 function criarCarta(palavra, index){
     const carta = document.createElement("div");
-    adicionarListener(carta)
-    carta.classList.add("cartaVirada");
-    carta.classList.add(palavra);
-    carta.style.left = `${index * 10}px`;
+    carta.classList.add("carta", "cartaVirada");
+    carta.dataset.palavra = palavra;
+    adicionarListener(carta);
     return carta;
 }
 
 function adicionarListener(carta){
     carta.addEventListener("click", () => {
-        if(carta.classList[0] == "cartaVirada" || carta.classList[1] == "cartaVirada"){
+        if(carta.classList.contains("cartaVirada")){
             carta.classList.remove("cartaVirada");
+            carta.style.transform = "translateY(360deg)"
             carta.classList.add("cartaAberta");
-            carta.innerHTML = carta.classList[0];
+            carta.innerHTML = carta.dataset.palavra;
         }else{
            carta.classList.remove("cartaAberta");
             carta.classList.add("cartaVirada");
@@ -36,22 +36,22 @@ function adicionarListener(carta){
     })
 }
 
-function draw(baralho, canva){
-    canva.innerHTML = "";
+function draw(baralho, canvas){
+    canvas.innerHTML = "";
     baralho.forEach((elemento, index) => {
-        canva.appendChild(criarCarta(elemento, index));
+        canvas.appendChild(criarCarta(elemento, index));
     })
 }
 
 //----------FUNÇÃO PRINCIPAL----------//
 function main(){
-    const canva = document.getElementById('areaJogavel');
+    const canvas = document.getElementById('areaJogavel');
 
     const palavras = ["uva","ovo","arvore","esfera","iris"];
 
     const baralho = embaralhar(palavras);
 
-    draw(baralho, canva);
+    draw(baralho, canvas);
 }
 
 main();
