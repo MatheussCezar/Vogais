@@ -19,6 +19,11 @@ function embaralhar(palavras){
 function criarCarta(palavra, index){
     const carta = document.createElement("div");
     carta.classList.add("carta");
+    if(palavra.length > 1){
+        carta.dataset.tipo = "palavra";
+    }else{
+        carta.dataset.tipo = "letra";
+    }
     carta.dataset.palavra = palavra;
     carta.innerHTML = `
         <div class="carta-inner">
@@ -46,7 +51,11 @@ function verificarCartas(){
     }
     palavra1 = cartasSelecionadas[0].dataset.palavra;
     palavra2 = cartasSelecionadas[1].dataset.palavra;
-    if(palavra1[0] == palavra2[0]){
+
+    palavra1Tipo = cartasSelecionadas[0].dataset.tipo;
+    palavra2Tipo =cartasSelecionadas[1].dataset.tipo;
+    
+    if(palavra1[0] == palavra2[0] && (palavra1Tipo == "palavra" && palavra2Tipo == "letra" || palavra1Tipo == "letra" && palavra2Tipo == "palavra")){
         canvas.removeChild(cartasSelecionadas[0]);
         canvas.removeChild(cartasSelecionadas[1]);
         cartasSelecionadas = [];
@@ -64,9 +73,9 @@ function draw(baralho, canvas){
     })
 }
 
-//----------FUNÇÃO PRINCIPAL----------//
+//----------FUNÇÃO PRINCIPAL----------//,
 function main(){
-    const palavras = ["uva","ovo","arvore","esfera","iris"];
+    const palavras = ["uva","ovo","arvore","esfera","iris","ilha","onda","urso","escola"];
 
     const baralho = embaralhar(palavras);
 
