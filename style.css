@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#areaJogavel {
+    width: 1360px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 20px 0 0 90px;
+}
+
+.cartaVirada {
+    background-image: url('imagens/verso.jpeg');
+    background-size: cover;
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    position: relative;
+}
+
+.cartaAberta {
+    background-color: aqua;
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    position: relative;
+}
+
+
