@@ -1,3 +1,7 @@
+//----------VARIAVEIS GLOBAIS----------//
+let cartasSelecionadas = []
+const canvas = document.getElementById('areaJogavel');
+
 //----------FUNÇÕES----------//
 function embaralhar(palavras){
     let palavrasTamanho = palavras.length;
@@ -30,8 +34,24 @@ function criarCarta(palavra, index){
 
     carta.addEventListener("click", () => {
         carta.classList.toggle("virada");
+        cartasSelecionadas.push(carta);
+        verificarCartas()
     });
     return carta;
+}
+
+function verificarCartas(){
+    if(cartasSelecionadas.length < 2){
+        return;
+    }
+    if(cartasSelecionadas[0].dataset.palavra[0][0] == cartasSelecionadas[1].dataset.palavra[1][0]){
+        canvas.removeChild(cartasSelecionadas[0]);
+        canvas.removeChild(cartasSelecionadas[1]);
+    } else {
+        cartasSelecionadas[0].classList.toggle("virada");
+        cartasSelecionadas[1].classList.toggle("virada");
+        cartasSelecionadas = [];
+    }
 }
 
 function draw(baralho, canvas){
@@ -43,8 +63,6 @@ function draw(baralho, canvas){
 
 //----------FUNÇÃO PRINCIPAL----------//
 function main(){
-    const canvas = document.getElementById('areaJogavel');
-
     const palavras = ["uva","ovo","arvore","esfera","iris"];
 
     const baralho = embaralhar(palavras);
