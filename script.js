@@ -44,9 +44,12 @@ function verificarCartas(){
     if(cartasSelecionadas.length < 2){
         return;
     }
-    if(cartasSelecionadas[0].dataset.palavra[0][0] == cartasSelecionadas[1].dataset.palavra[1][0]){
+    palavra1 = cartasSelecionadas[0].dataset.palavra;
+    palavra2 = cartasSelecionadas[1].dataset.palavra;
+    if(palavra1[0] == palavra2[0]){
         canvas.removeChild(cartasSelecionadas[0]);
         canvas.removeChild(cartasSelecionadas[1]);
+        cartasSelecionadas = [];
     } else {
         cartasSelecionadas[0].classList.toggle("virada");
         cartasSelecionadas[1].classList.toggle("virada");
