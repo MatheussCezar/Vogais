@@ -24,6 +24,7 @@ function criarCarta(palavra, index){
     }else{
         carta.dataset.tipo = "letra";
     }
+    carta.dataset.estado = "virada"
     carta.dataset.palavra = palavra;
     carta.innerHTML = `
         <div class="carta-inner">
@@ -38,10 +39,17 @@ function criarCarta(palavra, index){
     `;
 
     carta.addEventListener("click", () => {
-        carta.classList.toggle("virada");
-        cartasSelecionadas.push(carta);
-        verificarCartas()
+        if(carta.dataset.estado == "virada" && cartasSelecionadas.length < 2){
+            carta.classList.toggle("virada");
+            carta.dataset.estado = "aberta";
+            cartasSelecionadas.push(carta);
+            setTimeout(()=>{
+                verificarCartas();
+            },2000);
+            
+        }
     });
+    console.log(carta);
     return carta;
 }
 
@@ -62,6 +70,8 @@ function verificarCartas(){
     } else {
         cartasSelecionadas[0].classList.toggle("virada");
         cartasSelecionadas[1].classList.toggle("virada");
+        cartasSelecionadas[0].dataset.estado = "virada";
+        cartasSelecionadas[1].dataset.estado = "virada";
         cartasSelecionadas = [];
     }
 }
@@ -73,6 +83,20 @@ function draw(baralho, canvas){
     })
 }
 
+function mostrarCartas(){
+    const cartas = document.querySelectorAll(".carta");
+
+    cartas.forEach((elemento)=>{
+        elemento.classList.toggle("virada");
+    })
+
+    setTimeout(() => {
+        cartas.forEach((elemento)=>{
+            elemento.classList.toggle("virada");
+        })
+    },4000);
+}
+
 //----------FUNÇÃO PRINCIPAL----------//,
 function main(){
     const palavras = ["uva","ovo","arvore","esfera","iris","ilha","onda","urso","escola"];
@@ -80,6 +104,8 @@ function main(){
     const baralho = embaralhar(palavras);
 
     draw(baralho, canvas);
+    
+    mostrarCartas();
 }
 
 main();
