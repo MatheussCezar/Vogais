@@ -3,6 +3,9 @@ let cartasSelecionadas = []
 const canvas = document.getElementById('areaJogavel');
 
 //----------FUNÇÕES----------//
+
+function mostrarTutoras(){
+}
 function embaralhar(palavras){
     let palavrasTamanho = palavras.length;
     for(let i = 0; i < palavrasTamanho; i++){
@@ -19,6 +22,14 @@ function embaralhar(palavras){
 function criarCarta(palavra, index){
     const carta = document.createElement("div");
     carta.classList.add("carta");
+    carta.style.position = "absolute";
+
+    const coluna = index % 5;
+    const linha = Math.floor(index / 5);
+
+    carta.style.left = `${coluna * 210}px`;
+    carta.style.top = `${linha * 210}px`;
+
     if(palavra.length > 1){
         carta.dataset.tipo = "palavra";
     }else{
@@ -84,6 +95,7 @@ function draw(baralho, canvas){
 }
 
 function mostrarCartas(){
+    mostrarCartas = true;
     const cartas = document.querySelectorAll(".carta");
 
     cartas.forEach((elemento)=>{
@@ -99,7 +111,7 @@ function mostrarCartas(){
 
 //----------FUNÇÃO PRINCIPAL----------//,
 function main(){
-    const palavras = ["uva","ovo","arvore","esfera","iris","ilha","onda","urso","escola"];
+    const palavras = ["ilha","onda","urso","escola", "aluno"];
 
     const baralho = embaralhar(palavras);
 
