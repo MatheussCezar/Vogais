@@ -1,6 +1,7 @@
 //----------VARIAVEIS GLOBAIS----------//
 let cartasSelecionadas = []
 const canvas = document.getElementById('areaJogavel');
+let mostrandoCartas = true;
 
 //----------FUNÇÕES----------//
 
@@ -50,7 +51,7 @@ function criarCarta(palavra, index){
     `;
 
     carta.addEventListener("click", () => {
-        if(carta.dataset.estado == "virada" && cartasSelecionadas.length < 2){
+        if(carta.dataset.estado == "virada" && cartasSelecionadas.length < 2 && !mostrandoCartas){
             carta.classList.toggle("virada");
             carta.dataset.estado = "aberta";
             cartasSelecionadas.push(carta);
@@ -91,21 +92,22 @@ function draw(baralho, canvas){
     canvas.innerHTML = "";
     baralho.forEach((elemento, index) => {
         canvas.appendChild(criarCarta(elemento, index));
-    })
+    });
 }
 
 function mostrarCartas(){
-    mostrarCartas = true;
+    mostrandoCartas = true;
     const cartas = document.querySelectorAll(".carta");
 
     cartas.forEach((elemento)=>{
         elemento.classList.toggle("virada");
-    })
+    });
 
     setTimeout(() => {
         cartas.forEach((elemento)=>{
             elemento.classList.toggle("virada");
         })
+        mostrandoCartas = false;
     },4000);
 }
 
