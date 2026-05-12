@@ -5,17 +5,17 @@
 }
 
 body{
-    background:#FAF3E0;
+    background: url("./imagens//Tela/Fundo.png");
+    background-size: cover;
     font-family: "DynaPuff", system-ui;
     overflow: hidden;
 }
  /*  TÍTULO */
 .titulo {
-    color:#FFC23A;
     display: flex;
     justify-content: center;
-    font-size: 40px;
     margin: 20px;
+    height: 80px;
 }
 
 .question {
