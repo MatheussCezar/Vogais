@@ -1,12 +1,21 @@
 //----------VARIAVEIS GLOBAIS----------//
 let cartasSelecionadas = []
-const canvas = document.getElementById('areaJogavel');
+const canvas = document.getElementById("areaJogavel");
 let mostrandoCartas = true;
+
 
 //----------FUNÇÕES----------//
 
 function mostrarTutoras(){
+    const tutoras = document.getElementById("ajuda");
+    tutoras.classList.remove("hidden");
 }
+
+function fecharTutoras(){
+    const tutoras = document.getElementById("ajuda");
+    tutoras.classList.add("hidden");
+}
+
 function embaralhar(palavras){
     let palavrasTamanho = palavras.length;
     for(let i = 0; i < palavrasTamanho; i++){

@@ -44,20 +44,43 @@ body{
     width: 1000px;
     height: 500px;
     position: relative;
-    margin: auto;
+    margin: 120px auto;
+}
+
+/* AJUDA */
+.hidden {
+    display: none;
+}
+
+#ajuda {
+    width: 960px;
+    height: 600px;
+    background-color: #002B3A;
+    border-radius: 20px;
+    position: absolute;
+    top: 100px;
+    left: 290px;
+    text-align: center;
+}
+
+#fecharTutoras {
+    position: absolute;
+    left: 920px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
+    border: none;
+    background-color: transparent;
 }
 /* CARTA */
 
 .carta{
-
     width:170px;
     height:170px;
-
     perspective:1000px;
-
     cursor:pointer;
-
-    
 }
 
 .carta:hover {
@@ -68,21 +91,16 @@ body{
 /* ÁREA QUE GIRA */
 
 .carta-inner{
-
     width:100%;
     height:100%;
-
     position:relative;
-
     transform-style:preserve-3d;
-
     transition:transform 0.6s;
 }
 
 /* QUANDO VIRAR */
 
 .carta.virada .carta-inner{
-
     transform:rotateY(180deg);
 }
 
@@ -90,29 +108,21 @@ body{
 
 .frente,
 .verso{
-
     width:100%;
     height:100%;
-
     position:absolute;
-
     backface-visibility:hidden;
-
     border-radius:18px;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     font-size:50px;
 }
 
 /* FRENTE */
 
 .frente{
-
     background:#FFC93C;
-
     transform:rotateY(180deg);
 }
 
