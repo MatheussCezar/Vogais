@@ -3,6 +3,14 @@ let cartasSelecionadas = []
 const canvas = document.getElementById("areaJogavel");
 let mostrandoCartas = true;
 
+const palavrasPossiveis = [
+        ["Abacaxi", "Amora", "Anel", "Arvore", "Aviao"],
+        ["Elefante", "Escada", "Escova", "Esmalte", "Espelho"],
+        ["Igreja", "Ilha", "Ima", "Indio", "Iogurte"],
+        ["Olho", "Orelha", "Osso", "Ovelha", "Ovo"],
+        ["Unha", "Unicornio", "Universo", "Urso", "Uva"]
+    ];
+
 
 //----------FUNÇÕES----------//
 
@@ -29,6 +37,16 @@ function embaralhar(palavras){
     return palavras;
 }
 
+function escolherPalavras(palavrasPossiveis) {
+    const palavrasSelecionadas = [];
+    for(let i = 0; i<palavrasPossiveis.length; i++){
+        let j = Math.floor(Math.random() * (palavrasPossiveis[i].length));
+        palavrasSelecionadas.push(palavrasPossiveis[i][j]);
+        palavrasPossiveis[i].splice(j, 1);
+    }
+    return palavrasSelecionadas;
+}
+
 function criarCarta(palavra, index){
     const carta = document.createElement("div");
     carta.classList.add("carta");
@@ -51,7 +69,7 @@ function criarCarta(palavra, index){
         <div class="carta-inner">
 
             <div class="frente">
-                ${palavra}
+                <img src="./imagens/${palavra[0]}/${palavra}.png">
             </div>
 
             <div class="verso"></div>
@@ -70,7 +88,6 @@ function criarCarta(palavra, index){
             
         }
     });
-    console.log(carta);
     return carta;
 }
 
@@ -122,9 +139,9 @@ function mostrarCartas(){
 
 //----------FUNÇÃO PRINCIPAL----------//,
 function main(){
-    const palavras = ["ilha","onda","urso","escola", "aluno"];
+    const palavrasSelecionadas = escolherPalavras(palavrasPossiveis);
 
-    const baralho = embaralhar(palavras);
+    const baralho = embaralhar(palavrasSelecionadas);
 
     draw(baralho, canvas);
     
