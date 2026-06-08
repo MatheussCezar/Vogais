@@ -2,6 +2,7 @@
 let cartasSelecionadas = []
 const canvas = document.getElementById("areaJogavel");
 let mostrandoCartas = true;
+let acertos = 0;
 
 const palavrasPossiveis = [
         ["Abacaxi", "Amora", "Anel", "Arvore", "Aviao"],
@@ -82,10 +83,7 @@ function criarCarta(palavra, index){
             carta.classList.toggle("virada");
             carta.dataset.estado = "aberta";
             cartasSelecionadas.push(carta);
-            setTimeout(()=>{
-                verificarCartas();
-            },2000);
-            
+            verificarCartas();
         }
     });
     return carta;
@@ -99,19 +97,26 @@ function verificarCartas(){
     palavra2 = cartasSelecionadas[1].dataset.palavra;
 
     palavra1Tipo = cartasSelecionadas[0].dataset.tipo;
-    palavra2Tipo =cartasSelecionadas[1].dataset.tipo;
+    palavra2Tipo = cartasSelecionadas[1].dataset.tipo;
     
-    if(palavra1[0] == palavra2[0] && (palavra1Tipo == "palavra" && palavra2Tipo == "letra" || palavra1Tipo == "letra" && palavra2Tipo == "palavra")){
-        canvas.removeChild(cartasSelecionadas[0]);
-        canvas.removeChild(cartasSelecionadas[1]);
-        cartasSelecionadas = [];
-    } else {
-        cartasSelecionadas[0].classList.toggle("virada");
-        cartasSelecionadas[1].classList.toggle("virada");
-        cartasSelecionadas[0].dataset.estado = "virada";
-        cartasSelecionadas[1].dataset.estado = "virada";
-        cartasSelecionadas = [];
-    }
+    setTimeout(() => {
+        if(palavra1[0] == palavra2[0] && (palavra1Tipo == "palavra" && palavra2Tipo == "letra" || palavra1Tipo == "letra" && palavra2Tipo == "palavra")){
+            canvas.removeChild(cartasSelecionadas[0]);
+            canvas.removeChild(cartasSelecionadas[1]);
+            cartasSelecionadas = [];
+            acertos++
+            if(acertos == 5){
+                acertos = 0;
+                start();
+            }
+        } else {
+            cartasSelecionadas[0].classList.toggle("virada");
+            cartasSelecionadas[1].classList.toggle("virada");
+            cartasSelecionadas[0].dataset.estado = "virada";
+            cartasSelecionadas[1].dataset.estado = "virada";
+            cartasSelecionadas = [];
+        }
+    },1000);
 }
 
 function draw(baralho, canvas){
@@ -137,8 +142,7 @@ function mostrarCartas(){
     },4000);
 }
 
-//----------FUNÇÃO PRINCIPAL----------//,
-function main(){
+function start(){
     const palavrasSelecionadas = escolherPalavras(palavrasPossiveis);
 
     const baralho = embaralhar(palavrasSelecionadas);
@@ -146,6 +150,11 @@ function main(){
     draw(baralho, canvas);
     
     mostrarCartas();
+}
+
+//----------FUNÇÃO PRINCIPAL----------//,
+function main(){
+    start();
 }
 
 main();
