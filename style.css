@@ -40,11 +40,42 @@ body{
 }
 /* ÁREA DO JOGO*/
 #areaJogavel{
-
     width: 1000px;
-    height: 500px;
+    height: 400px;
     position: relative;
     margin: 120px auto;
+}
+
+#start {
+    width: 252px;
+    height: 108px;
+    background-image: url("./imagens/tela/reiniciar.png");
+    margin: auto;
+}
+
+#start:hover {
+    background-image: url("./imagens/tela/reiniciar2.png");
+}
+
+#pause {
+    width: 252px;
+    height: 108px;
+    background-image: url("./imagens/tela/pause.png");
+    margin: auto;
+}
+
+#pause:hover {
+    background-image: url("./imagens/tela/pause2.png");
+}
+
+
+
+footer {
+    background-image: url("./imagens/tela/footer.png");
+    background-size: cover;
+    height: 90px;
+    display: flex;
+    padding-top: 8px;
 }
 
 /* AJUDA */

@@ -12,6 +12,7 @@ const palavrasPossiveis = [
         ["Unha", "Unicornio", "Universo", "Urso", "Uva"]
     ];
 
+let palavrasPossiveisNaoSelecionadas = [];
 
 //----------FUNÇÕES----------//
 
@@ -38,12 +39,12 @@ function embaralhar(palavras){
     return palavras;
 }
 
-function escolherPalavras(palavrasPossiveis) {
+function escolherPalavras(array) {
     const palavrasSelecionadas = [];
-    for(let i = 0; i<palavrasPossiveis.length; i++){
-        let j = Math.floor(Math.random() * (palavrasPossiveis[i].length));
-        palavrasSelecionadas.push(palavrasPossiveis[i][j]);
-        palavrasPossiveis[i].splice(j, 1);
+    for(let i = 0; i<array.length; i++){
+        let j = Math.floor(Math.random() * (array[i].length));
+        palavrasSelecionadas.push(array[i][j]);
+        array[i].splice(j, 1);
     }
     return palavrasSelecionadas;
 }
@@ -142,19 +143,21 @@ function mostrarCartas(){
     },4000);
 }
 
+function restart(){
+    palavrasPossiveisNaoSelecionadas = structuredClone(palavrasPossiveis);
+    start();
+}
+
 function start(){
-    const palavrasSelecionadas = escolherPalavras(palavrasPossiveis);
+    
+    const palavrasSelecionadas = escolherPalavras(palavrasPossiveisNaoSelecionadas);
 
     const baralho = embaralhar(palavrasSelecionadas);
 
     draw(baralho, canvas);
     
     mostrarCartas();
+    
 }
 
 //----------FUNÇÃO PRINCIPAL----------//,
-function main(){
-    start();
-}
-
-main();
