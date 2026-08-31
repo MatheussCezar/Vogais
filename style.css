@@ -55,6 +55,7 @@ body{
 
 #start:hover {
     background-image: url("./imagens/tela/reiniciar2.png");
+    cursor: pointer;
 }
 
 #pause {

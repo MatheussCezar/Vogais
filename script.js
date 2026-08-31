@@ -34,6 +34,8 @@ function mostrarTutoras(){
 
 function fecharTutoras(){
     const tutoras = document.getElementById("ajuda");
+    const videoTutoras = document.getElementById("videoTutorial");
+    videoTutoras.currentTime = 0;
     tutoras.classList.add("hidden");
 }
 

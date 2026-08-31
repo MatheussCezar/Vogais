@@ -17,10 +17,11 @@
         <button onclick="mostrarTutoras()"><img src="./imagens/tela/ajuda.png" alt=""></button>
     </div>
     <div id="areaJogavel"></div>
-    <div class="hidden" id="ajuda">
+    <div id="ajuda">
         <button onclick="fecharTutoras()" id="fecharTutoras">X</button>
-        <img src="./imagens/gato.jpg" alt="" style="display: inline-block; width: 400px; margin-top: 90px;">
-        <p style="color: white; font-size: 40px;">Depois vemo isso</p>
+        <video id="videoTutorial" width="700px" controls style="margin-top: 100px; border-radius: 10px;">
+            <source src="tutorial.mp4" type="video/mp4">
+        </video>
     </div>
     <footer>
         <div id="start" onclick="restart()"></div>
