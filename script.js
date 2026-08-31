@@ -2,10 +2,21 @@
 let cartasSelecionadas = []
 const canvas = document.getElementById("areaJogavel");
 let mostrandoCartas = true;
+let rodada = 0;
+let jogadas = 0;
 let acertos = 0;
+let erros = 0;
+
+let tipo = "";
+
+if (localStorage.getItem('tipo')) {
+    tipo = localStorage.getItem('tipo');
+} else {
+    localStorage.setItem('tipo', 'desenho')
+}
 
 const palavrasPossiveis = [
-        ["Abacaxi", "Amora", "Anel", "Arvore", "Aviao"],
+        ["Abacaxi", "Abacate", "Anel", "Arvore", "Aviao"],
         ["Elefante", "Escada", "Escova", "Esmalte", "Espelho"],
         ["Igreja", "Ilha", "Ima", "Indio", "Iogurte"],
         ["Olho", "Orelha", "Osso", "Ovelha", "Ovo"],
@@ -71,7 +82,7 @@ function criarCarta(palavra, index){
         <div class="carta-inner">
 
             <div class="frente">
-                <img src="./imagens/${palavra[0]}/${palavra}.png">
+                <img src="./imagens/${tipo}/${palavra[0]}/${palavra}.png">
             </div>
 
             <div class="verso"></div>
@@ -100,6 +111,8 @@ function verificarCartas(){
     palavra1Tipo = cartasSelecionadas[0].dataset.tipo;
     palavra2Tipo = cartasSelecionadas[1].dataset.tipo;
     
+    jogadas++;
+
     setTimeout(() => {
         if(palavra1[0] == palavra2[0] && (palavra1Tipo == "palavra" && palavra2Tipo == "letra" || palavra1Tipo == "letra" && palavra2Tipo == "palavra")){
             canvas.removeChild(cartasSelecionadas[0]);
@@ -108,6 +121,7 @@ function verificarCartas(){
             acertos++
             if(acertos == 5){
                 acertos = 0;
+                rodada++;
                 start();
             }
         } else {
@@ -116,6 +130,7 @@ function verificarCartas(){
             cartasSelecionadas[0].dataset.estado = "virada";
             cartasSelecionadas[1].dataset.estado = "virada";
             cartasSelecionadas = [];
+            erros++;
         }
     },1000);
 }
@@ -145,10 +160,24 @@ function mostrarCartas(){
 
 function restart(){
     palavrasPossiveisNaoSelecionadas = structuredClone(palavrasPossiveis);
+    if(!document.getElementById("tabelaDeAcertos").classList.contains("hidden")){
+        document.getElementById("tabelaDeAcertos").classList.add("hidden");
+    }
+    rodada = 0;
+    jogadas = 0;
+    acertos = 0;
+    erros = 0;
     start();
 }
 
 function start(){
+    console.log(rodada);
+    if(rodada == 5){
+        const resumo = document.getElementById("tabelaDeAcertos");
+        const porcentagemAceto = 100 - erros/jogadas*100;
+        resumo.innerHTML = `${porcentagemAceto.toFixed(2)}%`;
+        resumo.classList.remove("hidden");
+    }
     
     const palavrasSelecionadas = escolherPalavras(palavrasPossiveisNaoSelecionadas);
 
@@ -157,7 +186,15 @@ function start(){
     draw(baralho, canvas);
     
     mostrarCartas();
-    
 }
 
-//----------FUNÇÃO PRINCIPAL----------//,
+
+document.querySelector(".titulo").addEventListener("click", () => {
+    if(tipo == "desenho"){
+        localStorage.setItem('tipo', 'realista');
+        window.location.reload();
+    } else {
+        localStorage.setItem('tipo', 'desenho');
+        window.location.reload();
+    }
+})
