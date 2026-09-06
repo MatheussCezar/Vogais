@@ -9,6 +9,9 @@ let erros = 0;
 
 let tipo = "";
 
+const acerto = document.getElementById("acerto");
+const erro = document.getElementById("erro");
+
 if (localStorage.getItem('tipo')) {
     tipo = localStorage.getItem('tipo');
 } else {
@@ -16,11 +19,11 @@ if (localStorage.getItem('tipo')) {
 }
 
 const palavrasPossiveis = [
-        ["Abacaxi", "Abacate", "Anel", "Arvore", "Aviao"],
-        ["Elefante", "Escada", "Escova", "Esmalte", "Espelho"],
-        ["Igreja", "Ilha", "Ima", "Indio", "Iogurte"],
-        ["Olho", "Orelha", "Osso", "Ovelha", "Ovo"],
-        ["Unha", "Unicornio", "Universo", "Urso", "Uva"]
+        ["abacaxi", "abacate", "anel", "arvore", "aviao"],
+        ["elefante", "escada", "escova", "esmalte", "espelho"],
+        ["igreja", "ilha", "ima", "indio", "iogurte"],
+        ["olho", "orelha", "osso", "ovelha", "ovo"],
+        ["unha", "unicornio", "universo", "urso", "uva"]
     ];
 
 let palavrasPossiveisNaoSelecionadas = [];
@@ -120,6 +123,7 @@ function verificarCartas(){
             canvas.removeChild(cartasSelecionadas[0]);
             canvas.removeChild(cartasSelecionadas[1]);
             cartasSelecionadas = [];
+            acerto.play();
             acertos++
             if(acertos == 5){
                 acertos = 0;
@@ -132,6 +136,7 @@ function verificarCartas(){
             cartasSelecionadas[0].dataset.estado = "virada";
             cartasSelecionadas[1].dataset.estado = "virada";
             cartasSelecionadas = [];
+            erro.play();
             erros++;
         }
     },1000);
@@ -173,11 +178,23 @@ function restart(){
 }
 
 function start(){
-    console.log(rodada);
     if(rodada == 5){
         const resumo = document.getElementById("tabelaDeAcertos");
+        const porcentagemAcetoCampo = document.getElementById("porcentagemAcerto");
+        const emojiCampo = document.getElementById("emojis");
         const porcentagemAceto = 100 - erros/jogadas*100;
-        resumo.innerHTML = `${porcentagemAceto.toFixed(2)}%`;
+        porcentagemAcetoCampo.innerHTML = `${porcentagemAceto.toFixed(2)}%`;
+
+        if(porcentagemAceto > 75){
+            emojiCampo.innerHTML = "🥳​🤩​😝​";
+        }else if(porcentagemAceto > 50){
+            emojiCampo.innerHTML = "😁​😎​🤓​";
+        }else if(porcentagemAceto > 25){
+            emojiCampo.innerHTML = "😊​😉​🤗​";
+        }else{
+            emojiCampo.innerHTML = "🙁​🫤​😟​";
+        }
+
         resumo.classList.remove("hidden");
     }
     

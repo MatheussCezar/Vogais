@@ -14,14 +14,14 @@ body{
 .titulo {
     display: flex;
     justify-content: center;
-    margin: 20px;
-    height: 80px;
+    margin: 1.5em;
+    height: 5em;
 }
 
 .question {
     position: absolute;
-    right: 30px;
-    top: 30px;
+    right: 1em;
+    top: 1em;
 }
 
 .question button {
@@ -36,11 +36,11 @@ body{
 }
 
 .question img {
-    height: 100px;
+    height: 8em;
 }
 /* ÁREA DO JOGO*/
 #areaJogavel{
-    width: 1000px;
+    width: 65%;
     height: 400px;
     position: relative;
     margin: 120px auto;
@@ -58,19 +58,6 @@ body{
     cursor: pointer;
 }
 
-#pause {
-    width: 252px;
-    height: 108px;
-    background-image: url("./imagens/tela/pause.png");
-    margin: auto;
-}
-
-#pause:hover {
-    background-image: url("./imagens/tela/pause2.png");
-}
-
-
-
 footer {
     background-image: url("./imagens/tela/footer.png");
     background-size: cover;
@@ -85,19 +72,25 @@ footer {
 }
 
 #ajuda {
-    width: 960px;
-    height: 600px;
+    width: 63%;
+    height: 70%;
     background-color: #002B3A;
     border-radius: 20px;
     position: absolute;
-    top: 100px;
-    left: 290px;
+    top: 10%;
+    left: 19%;
     text-align: center;
+}
+
+#videoTutorial {
+    width: 80%;
+    margin-top: 4em;
+    border-radius: 10px;
 }
 
 #fecharTutoras {
     position: absolute;
-    left: 920px;
+    left: 95%;
     width: 40px;
     height: 40px;
     font-size: 40px;
@@ -110,14 +103,18 @@ footer {
 /* RESUMO */
 
 #tabelaDeAcertos {
-    width: 960px;
-    height: 600px;
+    width: 63%;
+    height: 40%;
     background-color: #002B3A;
     border-radius: 20px;
     position: absolute;
-    top: 100px;
-    left: 290px;
+    top: 28%;
+    left: 19%;
     text-align: center;
+}
+
+#emojis {
+    font-size: 5em;
 }
 
 /* CARTA */

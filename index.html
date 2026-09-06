@@ -19,18 +19,21 @@
     <div id="areaJogavel"></div>
     <div id="ajuda">
         <button onclick="fecharTutoras()" id="fecharTutoras">X</button>
-        <video id="videoTutorial" width="700px" controls style="margin-top: 100px; border-radius: 10px;">
+        <video id="videoTutorial"controls>
             <source src="tutorial.mp4" type="video/mp4">
         </video>
     </div>
     <footer>
         <div id="start" onclick="restart()"></div>
-        <div id="pause"></div>
     </footer>
 
     <div id="tabelaDeAcertos" class="hidden" style="color: white; font-size: 40px;">
-        
+        <p id="porcentagemAcerto"></p>
+        <p id="emojis"></p>
     </div>
+
+    <audio src="./sons/success.mp3" id="acerto"></audio>
+    <audio src="./sons/mistake.mp3" id="erro"></audio>
     <script src="script.js"></script>
 </body>
 
