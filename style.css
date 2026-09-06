@@ -5,7 +5,7 @@
 }
 
 body{
-    background: url("./imagens//Tela/Fundo.png");
+    background: url("./imagens/tela/background.png");
     background-size: cover;
     font-family: "DynaPuff", system-ui;
     overflow: hidden;
