@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/41c95a2935.js" crossorigin="anonymous"></script>
     <title>Vogais</title>
 </head>
 
@@ -17,7 +18,7 @@
         <button onclick="mostrarTutoras()"><img src="./imagens/tela/ajuda.png" alt=""></button>
     </div>
     <div id="areaJogavel"></div>
-    <div id="ajuda">
+    <div id="ajuda" class="hidden">
         <button onclick="fecharTutoras()" id="fecharTutoras">X</button>
         <video id="videoTutorial"controls>
             <source src="tutorial.mp4" type="video/mp4">
@@ -33,7 +34,7 @@
     </div>
 
     <div id="colocarTelaCheia">
-        <button onclick="telaCheia()"></button>
+        <button onclick="telaCheia()"><i class="fa-solid fa-maximize"></i></button>
     </div>
 
     <audio src="./sons/success.mp3" id="acerto"></audio>

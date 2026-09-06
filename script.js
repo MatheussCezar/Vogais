@@ -207,6 +207,14 @@ function start(){
     mostrarCartas();
 }
 
+function telaCheia(){
+    document.documentElement.requestFullscreen();
+    const janela = document.getElementById("colocarTelaCheia");
+    const ajuda = document.getElementById("ajuda");
+    ajuda.classList.toggle("hidden");
+    janela.classList.toggle("hidden");
+}
+
 
 document.querySelector(".titulo").addEventListener("click", () => {
     if(tipo == "desenho"){
