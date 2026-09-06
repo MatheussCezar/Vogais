@@ -15,7 +15,8 @@ const erro = document.getElementById("erro");
 if (localStorage.getItem('tipo')) {
     tipo = localStorage.getItem('tipo');
 } else {
-    localStorage.setItem('tipo', 'desenho')
+    localStorage.setItem('tipo', 'realista')
+    tipo = localStorage.getItem('tipo');
 }
 
 const palavrasPossiveis = [
