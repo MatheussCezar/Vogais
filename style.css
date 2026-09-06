@@ -39,6 +39,16 @@ body{
     height: 8em;
 }
 /* ÁREA DO JOGO*/
+
+#colocarTelaCheia{
+    background-color: #002B3A;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    width: 10%;
+    height: 10%;  
+}
+
 #areaJogavel{
     width: 65%;
     height: 400px;
